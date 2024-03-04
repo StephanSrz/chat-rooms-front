@@ -1,20 +1,15 @@
 <template>
-  <NavBar :userLog="true" />
-  <ChatBoxRight userName="stephan" userMessage="Welcome to Your Vue.js App"/>
-  <ChatBoxLeft userName="Flojan" userMessage="Shut up mother f**ker"/>
+  <NavBar :userLog="false" />
+  <router-view/>
 </template>
 
 <script>
-import ChatBoxRight from './components/chatboxes/ChatBoxRight.vue';
-import ChatBoxLeft from './components/chatboxes/ChatBoxLeft.vue';
 import NavBar from './components/head/NavBar.vue';
 
 export default {
   name: 'App',
   components: {
     NavBar,
-    ChatBoxRight,
-    ChatBoxLeft
   }
 }
 </script>
@@ -28,3 +23,4 @@ export default {
   text-align: center;
 }
 </style>
+

@@ -75,7 +75,6 @@ nav{
 /* RESPONSIVE */
 @media (max-width: 768px) {
   .logo-container {
-    
     box-sizing: border-box;
     flex-direction: row;
     align-items: center;

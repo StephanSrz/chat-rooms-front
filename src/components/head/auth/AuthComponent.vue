@@ -1,8 +1,8 @@
 <template>
   <div class="items">
     <div class="item-container">
-      <a href="#" class="item">Log In</a>
-      <a href="#" class="item">Sign Up</a>
+      <router-link :to="{ name: 'login' }" class="item">Log In</router-link>
+      <router-link :to="{ name: 'signup' }" class="item">Sign Up</router-link>
     </div>
     <HamburgerMenu :dataMenu="dataMenu"/>
   </div>
