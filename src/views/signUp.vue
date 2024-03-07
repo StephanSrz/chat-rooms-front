@@ -3,15 +3,15 @@
     <div class="auth">
       <div class="signup-form">
         <h2>Sign Up</h2>
-        <form action="">
+        <form action="" @submit.prevent="fetchSignUp">
           <label for="username">Username</label>
-          <input type="text" id="username" placeholder="Enter your username">
+          <input type="text" id="username" placeholder="Enter your username" v-model="userName" required>
           <label for="email">Email</label>
-          <input type="email" id="email" placeholder="Enter your email">
+          <input type="email" id="email" placeholder="Enter your email" v-model="email" required>
           <label for="password">Password</label>
-          <input type="password" id="password" placeholder="Enter your password">
+          <input type="password" id="password" placeholder="Enter your password" v-model="password" required>
           <label for="confirm-password">Confirm Password</label>
-          <input type="password" id="confirm-password" placeholder="Confirm your password">
+          <input type="password" id="confirm-password" placeholder="Confirm your password" v-model="confPassword" required>
           <button type="submit">Sign Up</button>
         </form>
       </div>
@@ -33,10 +33,43 @@
 </template>
 
 <script>
+import { usersMSInstance } from '@/common/axiosInstance';
 import selectRoom from '@/components/selectRoom.vue';
 
 export default {
   name: 'logIn',
+  data(){
+    return {
+      userName: '',
+      email: '',
+      password: '',
+      confPassword: ''
+    }
+  },
+  methods: {
+    async fetchSignUp(){
+      if(!this.validateEmail){
+        console.log('no valid')
+      }
+      if(!this.checkPassword()){
+        console.log("no valid password")
+        return
+      }
+      try {
+        const result = await usersMSInstance.get('/')
+        console.log(result)
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    checkPassword(){
+      return this.confPassword == this.password
+    },
+    validateEmail() {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(this.email);
+    },
+  },
   components: {
     selectRoom
   }
@@ -115,6 +148,7 @@ input {
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  color: #485a64;
 }
 
 button {
